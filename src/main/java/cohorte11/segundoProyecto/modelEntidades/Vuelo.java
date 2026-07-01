@@ -25,13 +25,15 @@ public class Vuelo
     private LocalDateTime fechaHora;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private EstadoVuelo estado;
 
     public Vuelo()
     {
     }
 
-    public Vuelo(Long id, String origen, String destino, LocalDateTime fechaHora, EstadoVuelo estado) {
+    public Vuelo(Long id, String origen, String destino, LocalDateTime fechaHora, EstadoVuelo estado)
+    {
         this.id = id;
         this.origen = origen;
         this.destino = destino;
@@ -39,35 +41,53 @@ public class Vuelo
         this.estado = estado;
     }
 
-    public String getOrigen() {
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public String getOrigen()
+    {
         return origen;
     }
 
-    public void setOrigen(String origen) {
+    public void setOrigen(String origen)
+    {
         this.origen = origen;
     }
 
-    public String getDestino() {
+    public String getDestino()
+    {
         return destino;
     }
 
-    public void setDestino(String destino) {
+    public void setDestino(String destino)
+    {
         this.destino = destino;
     }
 
-    public LocalDateTime getFechaHora() {
+    public LocalDateTime getFechaHora()
+    {
         return fechaHora;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
+    public void setFechaHora(LocalDateTime fechaHora)
+    {
         this.fechaHora = fechaHora;
     }
 
-    public EstadoVuelo getEstado() {
+    public EstadoVuelo getEstado()
+    {
         return estado;
     }
 
-    public void setEstado(EstadoVuelo estado) {
+    public void setEstado(EstadoVuelo estado)
+    {
         this.estado = estado;
     }
 }

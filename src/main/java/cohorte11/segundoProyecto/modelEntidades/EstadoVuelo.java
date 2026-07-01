@@ -1,6 +1,7 @@
 package cohorte11.segundoProyecto.modelEntidades;
 
-public enum EstadoVuelo {
+public enum EstadoVuelo
+{
     PROGRAMADO,
     EN_VUELO,
     ATERRIZADO,

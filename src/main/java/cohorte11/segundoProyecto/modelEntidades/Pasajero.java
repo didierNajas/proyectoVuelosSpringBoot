@@ -32,38 +32,55 @@ public class Pasajero {
     public Pasajero() {
     }
 
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
     // getters y setters
 
-
-    public String getNombre() {
+    public String getNombre()
+    {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre)
+    {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
+    public String getApellido()
+    {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
+    public void setApellido(String apellido)
+    {
         this.apellido = apellido;
     }
 
-    public String getDocumento() {
+    public String getDocumento()
+    {
         return documento;
     }
 
-    public void setDocumento(String documento) {
+    public void setDocumento(String documento)
+    {
         this.documento = documento;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.email = email;
     }
 }

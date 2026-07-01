@@ -16,13 +16,15 @@ public class VueloController {
 
     private final VueloService vueloService;
 
-    public VueloController(VueloService vueloService) {
+    public VueloController(VueloService vueloService)
+    {
         this.vueloService = vueloService;
     }
 
     // CREATE
     @PostMapping
-    public ResponseEntity<Vuelo> crearVuelo(@RequestBody Vuelo vuelo) {
+    public ResponseEntity<Vuelo> crearVuelo(@Valid @RequestBody Vuelo vuelo)
+    {
 
         Vuelo nuevoVuelo = vueloService.guardarVuelo(vuelo);
 
@@ -31,46 +33,43 @@ public class VueloController {
 
     // READ ALL
     @GetMapping
-    public ResponseEntity<List<Vuelo>> obtenerVuelos() {
+    public ResponseEntity<List<Vuelo>> obtenerVuelos()
+    {
 
         return ResponseEntity.ok(vueloService.obtenerVuelos());
     }
 
     // READ BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Vuelo> obtenerVueloPorId(@PathVariable Long id) {
+    public ResponseEntity<Vuelo> obtenerVueloPorId(@PathVariable Long id)
+    {
 
         Optional<Vuelo> vuelo = vueloService.obtenerVueloPorId(id);
 
-        return vuelo.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return vuelo.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<Vuelo> actualizarVuelo(
+    public ResponseEntity<Vuelo> actualizarVuelo
+    (
             @PathVariable Long id,
-            @Valid @RequestBody Vuelo vuelo) {
+            @Valid @RequestBody Vuelo vuelo
+    )
+    {
 
         Vuelo vueloActualizado = vueloService.actualizarVuelo(id, vuelo);
 
-        if (vueloActualizado != null) {
-            return ResponseEntity.ok(vueloActualizado);
-        }
-
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(vueloActualizado);
     }
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarVuelo(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminarVuelo(@PathVariable Long id)
+    {
 
-        boolean eliminado = vueloService.eliminarVuelo(id);
+        vueloService.eliminarVuelo(id);
 
-        if (eliminado) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
     }
 }

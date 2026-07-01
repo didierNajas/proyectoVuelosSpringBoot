@@ -1,61 +1,72 @@
 package cohorte11.segundoProyecto.DTO;
 
 import cohorte11.segundoProyecto.modelEntidades.ClaseAsiento;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-public class ReservaResponseDTO {
+public class ReservaResponseDTO
+{
 
     private Long reservaId;
 
-    @NotBlank
+    @NotNull
     private String nombrePasajero;
-    @NotBlank
+    @NotNull
     private String origenVuelo;
-    @NotBlank
+    @NotNull
     private String destinoVuelo;
-    @NotBlank
+    @NotNull
     private ClaseAsiento claseAsiento;
 
     public ReservaResponseDTO() {
     }
 
-    public Long getReservaId() {
+    public Long getReservaId()
+    {
         return reservaId;
     }
 
-    public void setReservaId(Long reservaId) {
+    public void setReservaId(Long reservaId)
+    {
         this.reservaId = reservaId;
     }
 
-    public String getNombrePasajero() {
+    public String getNombrePasajero()
+    {
         return nombrePasajero;
     }
 
-    public void setNombrePasajero(String nombrePasajero) {
+    public void setNombrePasajero(String nombrePasajero)
+    {
         this.nombrePasajero = nombrePasajero;
     }
 
-    public String getOrigenVuelo() {
+    public String getOrigenVuelo()
+    {
         return origenVuelo;
     }
 
-    public void setOrigenVuelo(String origenVuelo) {
+    public void setOrigenVuelo(String origenVuelo)
+    {
         this.origenVuelo = origenVuelo;
     }
 
-    public String getDestinoVuelo() {
+    public String getDestinoVuelo()
+    {
         return destinoVuelo;
     }
 
-    public void setDestinoVuelo(String destinoVuelo) {
+    public void setDestinoVuelo(String destinoVuelo)
+    {
         this.destinoVuelo = destinoVuelo;
     }
 
-    public ClaseAsiento getClaseAsiento() {
+    public ClaseAsiento getClaseAsiento()
+    {
         return claseAsiento;
     }
 
-    public void setClaseAsiento(ClaseAsiento claseAsiento) {
+    public void setClaseAsiento(ClaseAsiento claseAsiento)
+    {
         this.claseAsiento = claseAsiento;
     }
 }

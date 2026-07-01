@@ -21,38 +21,47 @@ public class Reserva {
     @JoinColumn(name = "vuelo_id")
     private Vuelo vuelo;
 
-    public Reserva() {
+    public Reserva()
+    {
     }
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public ClaseAsiento getClaseAsiento() {
+    public ClaseAsiento getClaseAsiento()
+    {
         return claseAsiento;
     }
 
-    public void setClaseAsiento(ClaseAsiento claseAsiento) {
+    public void setClaseAsiento(ClaseAsiento claseAsiento)
+    {
         this.claseAsiento = claseAsiento;
     }
 
-    public Pasajero getPasajero() {
+    public Pasajero getPasajero()
+    {
         return pasajero;
     }
 
-    public void setPasajero(Pasajero pasajero) {
+    public void setPasajero(Pasajero pasajero)
+    {
         this.pasajero = pasajero;
     }
 
-    public Vuelo getVuelo() {
+    public Vuelo getVuelo()
+    {
         return vuelo;
     }
 
-    public void setVuelo(Vuelo vuelo) {
+    public void setVuelo(Vuelo vuelo)
+    {
         this.vuelo = vuelo;
     }
 }

@@ -8,6 +8,7 @@ import cohorte11.segundoProyecto.modelEntidades.Vuelo;
 import cohorte11.segundoProyecto.repositoryComunicacion.PasajeroRepository;
 import cohorte11.segundoProyecto.repositoryComunicacion.ReservaRepository;
 import cohorte11.segundoProyecto.repositoryComunicacion.VueloRepository;
+import cohorte11.segundoProyecto.web.error.RecursoNoEncontradoException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,14 +31,12 @@ public class ReservaService {
     public ReservaResponseDTO crearReserva(ReservaRequestDTO dto) {
 
         Pasajero pasajero = pasajeroRepository.findById(dto.getPasajeroId())
-                .orElse(null);
+                .orElseThrow(() -> new RecursoNoEncontradoException(
+                        "Pasajero no encontrado con id " + dto.getPasajeroId()));
 
         Vuelo vuelo = vueloRepository.findById(dto.getVueloId())
-                .orElse(null);
-
-        if (pasajero == null || vuelo == null) {
-            return null;
-        }
+                .orElseThrow(() -> new RecursoNoEncontradoException(
+                        "Vuelo no encontrado con id " + dto.getVueloId()));
 
         Reserva reserva = new Reserva();
 

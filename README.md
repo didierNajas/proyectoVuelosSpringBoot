@@ -1,82 +1,53 @@
 # Segundo Proyecto - Aerolinea API
 
-API REST construida con Spring Boot para gestionar pasajeros, vuelos y reservas de una aerolínea.
+Proyecto backend hecho con Spring Boot para manejar pasajeros, vuelos y reservas.
+
+## Lo que hace
+
+- Crear, listar, buscar, editar y eliminar pasajeros
+- Crear, listar, buscar, editar y eliminar vuelos
+- Crear reservas asociando un pasajero con un vuelo
 
 ## Tecnologias
 
 - Java 21
-- Spring Boot 4.0.6
+- Spring Boot
 - Spring Web MVC
 - Spring Data JPA
 - Spring Validation
 - PostgreSQL
-- Springdoc OpenAPI / Swagger UI
+- Swagger / OpenAPI
 - Maven
 
-## Funcionalidades
+## Como corre
 
-- CRUD de pasajeros
-- CRUD de vuelos
-- Creacion de reservas asociando un pasajero y un vuelo
-- Persistencia con JPA sobre PostgreSQL
-- Validacion basica de datos de entrada
-- Documentacion interactiva con Swagger
+La aplicacion usa PostgreSQL local. La conexion esta en `src/main/resources/application.properties`.
 
-## Estructura general
+Datos que espera por defecto:
 
-- `controllerEndPoint`: expone los endpoints REST
-- `serviceMetodosEtc`: contiene la logica de negocio
-- `repositoryComunicacion`: acceso a datos con Spring Data JPA
-- `modelEntidades`: entidades y enums del dominio
-- `DTO`: objetos de entrada y salida para reservas
+- `jdbc:postgresql://localhost:5432/aerolineaApi`
+- usuario `postgres`
+- contrasena configurada en el archivo de propiedades
 
-## Requisitos
-
-- Java 21
-- Maven 3.9+ o el wrapper del proyecto
-- PostgreSQL ejecutandose localmente
-- Base de datos creada con el nombre `aerolineaApi`
-
-## Configuracion
-
-La conexion a base de datos se define en `src/main/resources/application.properties`.
-
-Valores esperados:
-
-- `spring.datasource.url=jdbc:postgresql://localhost:5432/aerolineaApi`
-- `spring.datasource.username=postgres`
-- `spring.datasource.password=...`
-
-Importante: no dejes credenciales reales en el repositorio. Si vas a compartir el proyecto, mueve usuario y contrasena a variables de entorno o perfiles de Spring.
-
-JPA esta configurado con:
-
-- `spring.jpa.hibernate.ddl-auto=update`
-- `spring.jpa.show-sql=true`
-
-Eso hace que Hibernate cree o actualice las tablas automaticamente segun las entidades.
-
-## Ejecucion
-
-Con Maven:
-
-```bash
-mvn spring-boot:run
-```
-
-Con el wrapper:
+Para levantarla:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-La aplicacion levanta por defecto en:
+Si prefieres Maven instalado:
+
+```bash
+mvn spring-boot:run
+```
+
+La app queda en:
 
 ```text
 http://localhost:8080
 ```
 
-Swagger UI:
+Swagger:
 
 ```text
 http://localhost:8080/swagger-ui/index.html
@@ -86,29 +57,27 @@ http://localhost:8080/swagger-ui/index.html
 
 ### Pasajeros
 
-- `POST /pasajeros` crea un pasajero
-- `GET /pasajeros` lista todos los pasajeros
-- `GET /pasajeros/{id}` obtiene un pasajero por id
-- `PUT /pasajeros/{id}` actualiza un pasajero
-- `DELETE /pasajeros/{id}` elimina un pasajero
+- `POST /pasajeros`
+- `GET /pasajeros`
+- `GET /pasajeros/{id}`
+- `PUT /pasajeros/{id}`
+- `DELETE /pasajeros/{id}`
 
 ### Vuelos
 
-- `POST /vuelos` crea un vuelo
-- `GET /vuelos` lista todos los vuelos
-- `GET /vuelos/{id}` obtiene un vuelo por id
-- `PUT /vuelos/{id}` actualiza un vuelo
-- `DELETE /vuelos/{id}` elimina un vuelo
+- `POST /vuelos`
+- `GET /vuelos`
+- `GET /vuelos/{id}`
+- `PUT /vuelos/{id}`
+- `DELETE /vuelos/{id}`
 
 ### Reservas
 
-- `POST /reservas` crea una reserva
+- `POST /reservas`
 
-## Modelo de datos
+## Modelo
 
 ### Pasajero
-
-Campos:
 
 - `id`
 - `nombre`
@@ -118,15 +87,13 @@ Campos:
 
 ### Vuelo
 
-Campos:
-
 - `id`
 - `origen`
 - `destino`
 - `fechaHora`
 - `estado`
 
-Estados disponibles:
+Estados de vuelo:
 
 - `PROGRAMADO`
 - `EN_VUELO`
@@ -135,11 +102,7 @@ Estados disponibles:
 
 ### Reserva
 
-Relaciona:
-
-- un `Pasajero`
-- un `Vuelo`
-- una `ClaseAsiento`
+Relaciona un pasajero con un vuelo y una clase de asiento.
 
 Clases disponibles:
 
@@ -171,8 +134,7 @@ Response:
 }
 ```
 
-## Notas
+## Nota
 
-- Si el pasajero o el vuelo no existen, `POST /reservas` responde `404 Not Found`.
-- `Pasajero` y `Vuelo` usan validacion con Jakarta Validation.
-- El proyecto usa nombres de paquetes mixtos heredados del ejercicio original; no afectan la ejecucion.
+- Si el pasajero o el vuelo no existen, la reserva responde con `404`.
+- La validacion de datos esta hecha con Jakarta Validation.

@@ -2,6 +2,7 @@ package cohorte11.segundoProyecto.serviceMetodosEtc;
 
 import cohorte11.segundoProyecto.modelEntidades.Vuelo;
 import cohorte11.segundoProyecto.repositoryComunicacion.VueloRepository;
+import cohorte11.segundoProyecto.web.error.RecursoNoEncontradoException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,29 +34,26 @@ public class VueloService {
 
     // UPDATE
     public Vuelo actualizarVuelo(Long id, Vuelo vueloActualizado) {
+        Vuelo vueloExistente = vueloRepository.findById(id)
+                .orElseThrow(() -> new RecursoNoEncontradoException(
+                        "Vuelo no encontrado con id " + id));
 
-        Vuelo vueloExistente = vueloRepository.findById(id).orElse(null);
+        vueloExistente.setOrigen(vueloActualizado.getOrigen());
+        vueloExistente.setDestino(vueloActualizado.getDestino());
+        vueloExistente.setFechaHora(vueloActualizado.getFechaHora());
+        vueloExistente.setEstado(vueloActualizado.getEstado());
 
-        if (vueloExistente != null) {
-
-            vueloExistente.setOrigen(vueloActualizado.getOrigen());
-            vueloExistente.setDestino(vueloActualizado.getDestino());
-            vueloExistente.setFechaHora(vueloActualizado.getFechaHora());
-
-            return vueloRepository.save(vueloExistente);
-        }
-
-        return null;
+        return vueloRepository.save(vueloExistente);
     }
 
     // DELETE
     public boolean eliminarVuelo(Long id) {
-
-        if (vueloRepository.existsById(id)) {
-            vueloRepository.deleteById(id);
-            return true;
+        if (!vueloRepository.existsById(id)) {
+            throw new RecursoNoEncontradoException(
+                    "Vuelo no encontrado con id " + id);
         }
 
-        return false;
+        vueloRepository.deleteById(id);
+        return true;
     }
 }

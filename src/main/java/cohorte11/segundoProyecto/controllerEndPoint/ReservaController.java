@@ -17,22 +17,20 @@ public class ReservaController {
 
     private final ReservaService reservaService;
 
-    public ReservaController(ReservaService reservaService) {
+    public ReservaController(ReservaService reservaService)
+    {
         this.reservaService = reservaService;
     }
 
     @PostMapping
-    public ResponseEntity<ReservaResponseDTO> crearReserva(
-            @Valid @RequestBody ReservaRequestDTO dto) {
+    public ResponseEntity<ReservaResponseDTO> crearReserva
+            (
+            @Valid @RequestBody ReservaRequestDTO dto
+            )
+    {
 
-        ReservaResponseDTO response =
-                reservaService.crearReserva(dto);
+        ReservaResponseDTO response = reservaService.crearReserva(dto);
 
-        if (response == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
