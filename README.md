@@ -150,3 +150,19 @@ Response:
 
 - Si el pasajero o el vuelo no existen, la reserva responde con `404`.
 - La validacion de datos esta hecha con Jakarta Validation.
+
+## Desplegar en Render
+
+1. Conecta este repositorio en [Render](https://render.com) como **Web Service** con runtime **Docker**.
+2. Configura las variables de entorno de Supabase (`DATABASE_URL`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`).
+3. Agrega `APP_CORS_ALLOWED_ORIGIN_PATTERNS` con el origin de tu GitHub Pages:
+
+```env
+APP_CORS_ALLOWED_ORIGIN_PATTERNS=http://localhost:*,http://127.0.0.1:*,https://didiernajas.github.io
+```
+
+> **Nota:** Desde la version actual, `localhost` y `https://*.github.io` ya vienen permitidos en codigo. Si en Render tienes `APP_CORS_ALLOWED_ORIGIN_PATTERNS` solo con localhost, eliminala o agrega GitHub Pages.
+
+4. Tras el deploy, usa la URL publica (por ejemplo `https://aerolinea-api.onrender.com`) en el frontend en `js/config.js`.
+
+Tambien puedes usar el archivo `render.yaml` incluido en la raiz del proyecto como blueprint de Render.
