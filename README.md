@@ -19,15 +19,27 @@ Proyecto backend hecho con Spring Boot para manejar pasajeros, vuelos y reservas
 - Swagger / OpenAPI
 - Maven
 
-## Como corre
+## Como correr
 
-La aplicacion usa PostgreSQL local. La conexion esta en `src/main/resources/application.properties`.
+La aplicacion esta configurada para conectarse a Supabase usando PostgreSQL por JDBC.
 
-Datos que espera por defecto:
+### Conexion a Supabase
 
-- `jdbc:postgresql://localhost:5432/aerolineaApi`
-- usuario `postgres`
-- contrasena configurada en el archivo de propiedades
+1. Crea un archivo `.env` en la raiz del proyecto.
+2. Copia el formato de `.env.example`.
+3. Reemplaza la contrasena por la de tu proyecto Supabase.
+
+Ejemplo:
+
+```env
+DATABASE_URL=jdbc:postgresql://db.fdbyrydvbfoovrvebxae.supabase.co:5432/postgres?sslmode=require
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=tu_password_de_supabase
+JPA_DDL_AUTO=update
+SERVER_PORT=8080
+```
+
+Spring Boot importa ese archivo `.env` al iniciar. Supabase exige SSL, por eso el `sslmode=require` va dentro de la URL JDBC.
 
 Para levantarla:
 
