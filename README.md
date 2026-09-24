@@ -1,4 +1,4 @@
-# Segundo Proyecto - Aerolinea API
+# Proyecto - Aerolinea API
 
 Proyecto backend hecho con Spring Boot para manejar pasajeros, vuelos y reservas.
 
